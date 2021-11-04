@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Raspadmin</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="src/css/fontawesome-free-5.15.css">
+        <link rel="icon" type="image/png" href="src/img/raspberry-pi-icon.png">
+        <link rel="stylesheet" type="text/css" href="src/css/main-styled.css">
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h2><a href="#">RaspAdmin</a></h2>
+            </header>
+            <main id="files_tab"></main>
+            <aside id="files_cont"><div id="files_loading"></div></aside>
+        </div>
+        <script src="src/js/jquery-3.5.1.min.js"></script>
+        <script src="src/js/app.js"></script>
+        <script>
+            var app = new App(document.getElementById('files_tab'), document.getElementById('files_cont'));
+            app.path = location.hash.substr(1);
+            app.build();
+            app.player.onstop = () => {
+                location = '#' + app.path;
+            };
+            app.player.videos_suport = ['mp4', 'mkv'];
+            window.onhashchange = () => {
+                app.updateFiles(location.hash.substr(1));
+            };
+        </script>
+    </body>
+</html>
+
