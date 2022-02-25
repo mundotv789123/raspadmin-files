@@ -61,7 +61,7 @@ class LoginMenu {
         let title = document.createElement('h1');
         title.innerText = 'Login';
 
-        this.alertText = document.createElement('p')
+        this.alertText = document.createElement('p');
         this.alertText.style.display = 'none';
 
         /* inputs */
@@ -86,7 +86,7 @@ class LoginMenu {
 
         /* evento quando enter for pressionado */
         form.addEventListener("keyup", (event) => {
-            if (event.key == 'Enter') {
+            if (event.key === 'Enter') {
                 buttonSubmit.click();
             }
         });
@@ -294,7 +294,7 @@ class App {
         this.player = new Player();
         this.login = new LoginMenu();
         this.login.onlogin = (username, password) => {
-            if (username == "" || password == "") {
+            if (username === "" || password === "") {
                 this.login.updateForm(false, "Informe um usuário e senha!");
                 return;
             }
@@ -304,7 +304,7 @@ class App {
                     this.build();
                 }
             });
-        }
+        };
         this.path = '';
         this.files_tab = files_tab;
         this.files_cont = files_cont;
@@ -315,7 +315,7 @@ class App {
     /* construindo página */
     build() {
         /* carregando arquivos na barra lateral */
-        if (this.files_tab != null) {
+        if (this.files_tab !== null) {
             this.files.getFiles('/', (data) => {
                 if (!data.success)
                     return;
@@ -351,7 +351,7 @@ class App {
 
             /* caso der erro */
             if (!data.success) {
-                if (data.code == 401) {
+                if (data.code === 401) {
                     this.login.build();
                     return;
                 }
